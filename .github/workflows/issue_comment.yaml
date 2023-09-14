@@ -1,18 +1,24 @@
-name : comment on issue
+name: comment on issue
 
 on:
   issues:
     types: [opened]
 
 jobs:
-     comment-with-api:
-       runs-on: ubuntu-latest
-       steps:
-         - name: create commment with api
-           run :
-             gh api -X POST "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$ISSUE_NUMBER/comments" -f body='Comment but From API call not action'     
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-             ORGANIZATION: ${{ github.event.organization.login }}
-             REPOSITORY: ${{ github.event.repository.name }}
-             ISSUE_NUMBER: ${{ github.event.issue.number }}
+  comment-with-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up GitHub CLI
+        uses: actions/checkout@v2
+
+      - name: Create comment with API
+        run: |
+          # Extract the necessary information
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          REPOSITORY="${{ github.event.repository.name }}"
+
+          # Comment using the GitHub CLI
+          gh api -X POST "repos/${{ github.repository }}/issues/$ISSUE_NUMBER/comments" -f body='Comment but From API call not action'
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
