@@ -17,9 +17,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7' # Adjust to your Ruby version if needed
+          ruby-version: 2.7 # Adjust to your preferred Ruby version
 
       - name: Install Super-Linter
         run: |
@@ -31,4 +31,3 @@ jobs:
         with:
           name: linter-results
           path: /tmp/lint
-
