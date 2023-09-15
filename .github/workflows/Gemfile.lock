@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rails (6.0.3)
+      actionpack (= 6.0.3)
+      activemodel (= 6.0.3)
+      ...
+
+DEPENDENCIES
+  rails (~> 6.0.3)
