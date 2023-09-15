@@ -1,0 +1,12 @@
+# You can specify package versions like this:
+package-name==1.2.3
+
+# If you want to allow any version within a range, use inequalities:
+another-package>=2.0,<3.0
+
+# You can also specify packages without versions to get the latest version:
+some-package
+
+# Add more packages as needed:
+example-package>=1.0.0
+
