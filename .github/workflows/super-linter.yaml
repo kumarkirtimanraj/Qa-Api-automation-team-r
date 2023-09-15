@@ -1,0 +1,34 @@
+name: Code Quality Check
+
+on:
+  push:
+    branches:
+      - main # Replace with your main branch name
+  pull_request:
+    branches:
+      - main # Replace with your main branch name
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7' # Adjust to your Ruby version if needed
+
+      - name: Install Super-Linter
+        run: |
+          gem install super_linter
+          exec super_linter
+
+      - name: Upload Linter Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: linter-results
+          path: /tmp/lint
+
